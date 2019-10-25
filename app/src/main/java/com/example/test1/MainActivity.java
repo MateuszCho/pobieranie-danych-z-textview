@@ -38,13 +38,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_przycisk1.setOnClickListener(this);
         }
+        private boolean validateImie(){
+            String ImieInput = et_poleimie.getEditableText().toString().trim();
 
+            if(ImieInput.isEmpty()){
+                et_poleimie.setError("No podaj imię");
+                return false;
+            }
+            else{
+                et_poleimie.setError(null);
+                return true;
+            }
+        }
+
+    private boolean validateNazwisko(){
+        String NazwiskoInput = et_polenazwisko.getEditableText().toString().trim();
+
+        if(NazwiskoInput.isEmpty()){
+            et_poleimie.setError("No podaj nazwisko");
+            return false;
+        }
+        else{
+            et_poleimie.setError(null);
+            return true;
+        }
+
+    }
+    public void sprawdzDane(View v){
+        if (!validateImie() | !validateNazwisko()){
+            return;
+        }
+
+    }
     @Override
     public void onClick(View v) {
         str_poleimie = et_poleimie.getText().toString().trim();
+        String imieInput = str_poleimie;
+        if (imieInput.isEmpty()) {
+            et_poleimie.setError("No podaj imię");
+        }
+
         str_polenazwisko = et_polenazwisko.getText().toString().trim();
-        String name = str_poleimie + " " + str_polenazwisko;
+        String nazwiskoInput = str_polenazwisko;
+        if (nazwiskoInput.isEmpty()){
+            et_polenazwisko.setError("no podaj nazwisko");
+        }
+//TODO brak wyśietlania Striing name jeżeli nie przejdzie warunków
+
+        String name = "Witaj " + str_poleimie + " " + str_polenazwisko + "!";
         tv_data.setText(name);
     }
+
+
 
 }
